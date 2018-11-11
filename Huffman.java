@@ -19,6 +19,7 @@ public class Huffman {
     public static void main(String[] args) throws Exception {
         Scanner scanner = new Scanner(new File("input.txt"));
         int decision = 1;
+        handleNewText(scanner);
         // while (decision != -1) {
         //     if (handlingDecision(scanner, decision)) continue;
         //     decision = consoleMenu(scanner);
@@ -38,37 +39,37 @@ public class Huffman {
     //     return decision;
     // }
 
-    private static boolean handlingDecision(Scanner scanner, int decision) {
-        if (decision == 1) {
-            if (handleNewText(scanner)) return true;
-        } else if (decision == 2) {
-            if (handleEncodingNewText(scanner)) return true;
-        } else if (decision == 3) {
-            handleDecodingNewText(scanner);
-        }
-        return false;
-    }
+    // private static boolean handlingDecision(Scanner scanner, int decision) {
+    //     if (decision == 1) {
+    //         if (handleNewText(scanner)) return true;
+    //     } else if (decision == 2) {
+    //         if (handleEncodingNewText(scanner)) return true;
+    //     } else if (decision == 3) {
+    //         handleDecodingNewText(scanner);
+    //     }
+    //     return false;
+    // }
 
-    private static void handleDecodingNewText(Scanner scanner) {
-        System.out.println("Enter the text to decode:");
-        encoded = scanner.nextLine();
-        System.out.println("Text to Decode: " + encoded);
-        decodeText();
-    }
+    // private static void handleDecodingNewText(Scanner scanner) {
+    //     System.out.println("Enter the text to decode:");
+    //     encoded = scanner.nextLine();
+    //     System.out.println("Text to Decode: " + encoded);
+    //     decodeText();
+    // }
 
-    private static boolean handleEncodingNewText(Scanner scanner) {
-        System.out.println("Enter the text to encode:");
-        text = scanner.nextLine();
-        System.out.println("Text to Encode: " + text);
+    // private static boolean handleEncodingNewText(Scanner scanner) {
+    //     System.out.println("Enter the text to encode:");
+    //     text = scanner.nextLine();
+    //     System.out.println("Text to Encode: " + text);
 
-        if (!IsSameCharacterSet()) {
-            System.out.println("Not Valid input");
-            text = "";
-            return true;
-        }
-        encodeText();
-        return false;
-    }
+    //     if (!IsSameCharacterSet()) {
+    //         System.out.println("Not Valid input");
+    //         text = "";
+    //         return true;
+    //     }
+    //     encodeText();
+    //     return false;
+    // }
 
     private static boolean handleNewText(Scanner scanner) {
         int oldTextLength = text.length();
@@ -131,9 +132,7 @@ public class Huffman {
     }
 
     private static void encodeText() {
-        FileOutputStream out = null;
-        try{
-            out = new FileOutputStream("output.docx");
+        FileOutputStream out = null; 
             encoded = "";
             for (int i = 0; i < text.length(); i++)
                 encoded += codes.get(text.charAt(i));
@@ -141,7 +140,8 @@ public class Huffman {
             System.out.println("-------------------------------------------------------------");
             System.out.println("-------------------------------------------------------------");
             System.out.println(encoded);
-        
+         try{
+            out = new FileOutputStream("output.docx");
             out.write(encoded.getBytes());
         } catch(Exception e){}
     }
