@@ -17,20 +17,21 @@ public class Huffman {
     static int ASCII[] = new int[128];
 
     public static void main(String[] args) throws Exception {
-        Scanner scanner = new Scanner(new File("input.txt"));
-        int decision = 1;
-        handleNewText(scanner);
+        int c;
+        FileInputStream in = null;
+        try{
+        in = new FileInputStream("input.docx");
+        while((c = in.read()) != -1){
+            text += (char)c;
+            System.out.println((char)c);
+        }
+    }catch(Exception e){}
+    handleNewText(text);
     }
 
-    private static boolean handleNewText(Scanner scanner) {
+    private static boolean handleNewText(String scanner) {
         int oldTextLength = text.length();
-        System.out.println("Enter the text:");
-        text = scanner.nextLine();
-        if (newTextBasedOnOldOne && (oldTextLength != 0 && !IsSameCharacterSet())) {
-            System.out.println("Not Valid input");
-            text = "";
-            return true;
-        }
+
             ASCII = new int[128];
             nodes.clear();
             codes.clear();
